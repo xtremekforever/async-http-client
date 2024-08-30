@@ -58,7 +58,7 @@ extension DeconstructedURL {
             )
 
         case .httpUnix, .httpsUnix:
-            guard let socketPath = url.host, !socketPath.isEmpty else {
+            guard let socketPath = url.host(percentEncoded: false), !socketPath.isEmpty else {
                 throw HTTPClientError.missingSocketPath
             }
             self.init(
